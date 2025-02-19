@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBHO MARKET</title>
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="screen" style="display: block;">
+        <div class="splash-content">
+            <div class="app-logo">
+                <img src="assets/images/logo.png" alt="SUBHO MARKET" style="width: 150px; height: 150px;">
+            </div>
+            <h1>WELCOME TO SUBHO MARKET</h1>
+        </div>
+    </div>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen" style="display: none;">
+        <div class="auth-box">
+            <div class="app-logo">
+                <img src="assets/images/logo.png" alt="SUBHO MARKET" style="width: 120px; height: 120px;">
+            </div>
+            <h2>LOGIN</h2>
+            <div class="theme-toggle">
+                <button class="theme-btn" onclick="toggleTheme()">
+                    <span class="light-icon">🌞</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+            <div class="input-box">
+                <input type="tel" placeholder="Enter Mobile Number" id="loginPhone">
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Enter Password" id="loginPassword">
+            </div>
+            <button class="login-btn">LOGIN</button>
+            <p class="auth-link">Don't have an account? <a href="#" id="showRegister">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Screen -->
+    <div id="registerScreen" class="screen" style="display: none;">
+        <div class="auth-box">
+            <div class="app-logo">
+                <img src="assets/images/logo.png" alt="SUBHO MARKET" style="width: 120px; height: 120px;">
+            </div>
+            <h2>REGISTER</h2>
+            <div class="theme-toggle">
+                <button class="theme-btn" onclick="toggleTheme()">
+                    <span class="light-icon">🌞</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="Enter Name" id="regName">
+            </div>
+            <div class="input-box">
+                <input type="tel" placeholder="Enter Mobile" id="regPhone">
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder="Enter Email" id="regEmail">
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Enter Password" id="regPassword">
+            </div>
+            <button class="register-btn">REGISTER</button>
+            <p class="auth-link">Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="homeScreen" class="screen" style="display: none;">
+        <div class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <div class="home-container">
+            <div class="header-section">
+                <h1>Welcome Back, <span id="userName"></span></h1>
+                <div class="date-time-info">
+                    <div id="dayInfo" class="info-box"></div>
+                    <div id="dateInfo" class="info-box"></div>
+                    <div id="timeInfo" class="info-box"></div>
+                </div>
+            </div>
+
+            <div class="banner-section">
+                <div class="banner-slider">
+                    <div class="banner-slide active">
+                        <img src="./assets/images/banners/banner1.jpg" alt="Banner 1">
+                    </div>
+                    <div class="banner-slide">
+                        <img src="./assets/images/banners/banner2.jpg" alt="Banner 2">
+                    </div>
+                    <div class="banner-slide">
+                        <img src="./assets/images/banners/banner3.jpg" alt="Banner 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-section">
+                <h2>Today's Guess Numbers</h2>
+                
+                <div class="market-tabs">
+                    <button class="tab-btn active" data-market="all">All</button>
+                    <button class="tab-btn" data-market="kalyan">Kalyan</button>
+                    <button class="tab-btn" data-market="mayapur">Mayapur</button>
+                    <button class="tab-btn" data-market="rajasthan">Rajasthan</button>
+                    <button class="tab-btn" data-market="goa">Goa</button>
+                    <button class="tab-btn" data-market="delhi">Delhi</button>
+                    <button class="tab-btn" data-market="pune">Pune</button>
+                    <button class="tab-btn" data-market="karnataka">Karnataka</button>
+                </div>
+
+                <div id="guessNumbers" class="market-cards">
+                    <!-- Market cards will be added dynamically -->
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3>Need Help?</h3>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/916289737464?text=I%20need%20help" 
+                       target="_blank" 
+                       class="contact-btn whatsapp-btn">
+                        <img src="assets/images/whatsapp.png" alt="WhatsApp">
+                        WhatsApp
+                    </a>
+                    <a href="https://t.me/Gunjantx" 
+                       target="_blank" 
+                       class="contact-btn telegram-btn">
+                        <img src="assets/images/telegram.png" alt="Telegram">
+                        Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Screen -->
+    <div id="profileScreen" class="screen" style="display: none;">
+        <div class="content-box">
+            <h2>YOUR PROFILE</h2>
+            <div id="profileUpdateMessage" class="update-message"></div>
+            <div class="profile-info">
+                <div class="info-group">
+                    <label>NAME</label>
+                    <input type="text" id="profileName">
+                </div>
+                <div class="info-group">
+                    <label>PHONE</label>
+                    <input type="text" id="profilePhone" readonly>
+                </div>
+            </div>
+            <button class="update-btn" onclick="updateProfile()">UPDATE YOUR PROFILE</button>
+            <button class="back-btn" onclick="showHomeScreen()">BACK TO DASHBOARD</button>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Screen -->
+    <div id="privacyScreen" class="screen" style="display: none;">
+        <div class="content-box">
+            <h2>OUR POLICY</h2>
+            <div class="policy-content">
+                <p>Welcome to our platform. We are committed to protecting your personal information and ensuring transparency in our processes.</p>
+                
+                <p><strong>Privacy:</strong> We respect your privacy and ensure that your personal data is stored securely and used only for legitimate purposes.</p>
+                
+                <p><strong>Usage:</strong> By using our platform, you agree to adhere to our terms and conditions. Any misuse of the platform may result in account suspension or termination.</p>
+                
+                <p><strong>Updates:</strong> This policy may be updated periodically to reflect changes in regulations or our practices. We encourage you to review it regularly.</p>
+                
+                <p>For further information, please contact us at sahasubho54@gmail.com.</p>
+            </div>
+            <button class="back-btn" onclick="showHomeScreen()">BACK TO DASHBOARD</button>
+        </div>
+    </div>
+
+    <!-- Terms Screen -->
+    <div id="termsScreen" class="screen" style="display: none;">
+        <div class="content-box">
+            <h2>OUR TERMS & CONDITIONS</h2>
+            <div class="terms-content">
+                <p>Welcome to our platform. We are committed to protecting your personal information and ensuring transparency in our processes.</p>
+                
+                <p><strong>Privacy:</strong> We respect your privacy and ensure that your personal data is stored securely and used only for legitimate purposes.</p>
+                
+                <p><strong>Usage:</strong> By using our platform, you agree to adhere to our terms and conditions. Any misuse of the platform may result in account suspension or termination.</p>
+                
+                <p><strong>Updates:</strong> This policy may be updated periodically to reflect changes in regulations or our practices. We encourage you to review it regularly.</p>
+                
+                <p>For further information, please contact us at sahasubho54@gmail.com.</p>
+            </div>
+            <button class="back-btn" onclick="showHomeScreen()">BACK TO DASHBOARD</button>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation -->
+    <div id="logoutDialog" class="dialog-overlay">
+        <div class="dialog-box">
+            <h3>YOU CONFIRM TO LOGOUT?</h3>
+            <div class="dialog-buttons">
+                <button class="yes-btn" onclick="confirmLogout()">YES</button>
+                <button class="no-btn" onclick="closeLogoutDialog()">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-header">
+            <h2>MENU</h2>
+            <div class="theme-switch">
+                <div class="switch-handle"></div>
+            </div>
+        </div>
+        <button class="menu-item" data-item="profile">Profile</button>
+        <button class="menu-item" data-item="privacy">Privacy Policy</button>
+        <button class="menu-item" data-item="terms">Terms & Conditions</button>
+        <button class="menu-item" data-item="contact">Contact Us</button>
+        <button class="menu-item logout-btn" data-item="logout">Logout</button>
+        <button class="menu-item exit-btn" data-item="exit">Exit</button>
+    </div>
+
+    <!-- Contact Us Screen -->
+    <div id="contactScreen" class="screen" style="display: none;">
+        <div class="content-box">
+            <h2>CONTACT US</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <label>MOBILE NUMBER</label>
+                        <p>+91 6289737464</p>
+                    </div>
+                    <div class="info-item">
+                        <label>CALL AND WHATSAPP NUMBER</label>
+                        <p>+91 6289737464</p>
+                    </div>
+                    <div class="info-item">
+                        <label>EMAIL ID</label>
+                        <a href="mailto:papiyasaha1999kk@gmail.com" class="email-link">
+                            papiyasaha1999kk@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showHomeScreen()">BACK TO DASHBOARD</button>
+        </div>
+    </div>
+
+    <!-- Add Exit Confirmation Dialog -->
+    <div id="exitDialog" class="dialog-overlay">
+        <div class="dialog-box">
+            <h3>ARE YOU SURE?</h3>
+            <div class="dialog-buttons">
+                <button class="yes-btn" onclick="confirmExit()">YES</button>
+                <button class="no-btn" onclick="closeExitDialog()">NO</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/sync.js"></script>
+</body>
+</html> 

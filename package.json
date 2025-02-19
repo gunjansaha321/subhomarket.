@@ -1,0 +1,25 @@
+{
+  "name": "subho-market",
+  "version": "1.0.0",
+  "description": "Subho Market Website",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./css/input.css -o ./css/output.css --minify",
+    "watch": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+    "serve": "http-server . -p 8080 -c-1 --cors"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.0.1",
+    "http-server": "^14.1.1",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.7"
+  }
+}

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBHO MARKET - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Login Screen -->
+    <div id="adminLoginScreen" class="screen">
+        <div class="auth-box">
+            <div class="app-logo">
+                <img src="assets/images/logo.png" alt="SUBHO MARKET">
+            </div>
+            <h2>ADMIN LOGIN</h2>
+            <div class="input-box">
+                <input type="email" id="adminEmail" placeholder="Enter Admin Email">
+            </div>
+            <div class="input-box">
+                <input type="password" id="adminPassword" placeholder="Enter Password">
+            </div>
+            <button class="login-btn" onclick="handleAdminLogin()">LOGIN</button>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="screen" style="display: none;">
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="app-logo">
+                    <img src="assets/images/logo.png" alt="SUBHO MARKET">
+                </div>
+                <h3>Admin Panel</h3>
+                <!-- Add Real-time Clock -->
+                <div class="real-time-clock">
+                    <div id="adminTime"></div>
+                    <div id="adminDate"></div>
+                </div>
+                <!-- Theme Toggle -->
+                <div class="theme-toggle">
+                    <button class="theme-btn" onclick="toggleAdminTheme()">
+                        <span class="mode-icon">🌞</span>
+                        <span class="mode-text">Light Mode</span>
+                    </button>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <button class="menu-item active" data-section="dashboard">Dashboard</button>
+                <button class="menu-item" data-section="users">Users Management</button>
+                <button class="menu-item" data-section="markets">Markets Management</button>
+                <button class="menu-item" data-section="banners">Banners Management</button>
+                <button class="menu-item" data-section="content">Content Management</button>
+                <button class="menu-item logout" onclick="adminLogout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <div id="dashboardSection" class="content-section">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Users</h3>
+                        <p id="totalUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Users</h3>
+                        <p id="activeUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Markets</h3>
+                        <p id="totalMarkets">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Markets</h3>
+                        <p id="activeMarkets">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Inactive Markets</h3>
+                        <p id="inactiveMarkets">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Management Section -->
+            <div id="usersSection" class="content-section" style="display: none;">
+                <h2>Users Management</h2>
+                <div class="table-container">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Users will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Markets Management Section -->
+            <div id="marketsSection" class="content-section" style="display: none;">
+                <h2>Markets Management</h2>
+                <div class="market-actions">
+                    <button class="add-btn" onclick="showAddMarketModal()">Add New Market</button>
+                    <button class="update-btn" onclick="showUpdateGuessModal()">Update Guess Number</button>
+                </div>
+                
+                <!-- Market Details Table -->
+                <div class="table-container">
+                    <table id="marketDetailsTable">
+                        <thead>
+                            <tr>
+                                <th>Market Name</th>
+                                <th>Guess Number</th>
+                                <th>Open Time</th>
+                                <th>Close Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Market details will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Banners Management Section -->
+            <div id="bannersSection" class="content-section" style="display: none;">
+                <h2>Banners Management</h2>
+                
+                <!-- Banner Upload Area -->
+                <div class="banner-upload-area">
+                    <div class="upload-box">
+                        <h3>Replace Banner</h3>
+                        <div class="banner-preview-container">
+                            <img id="bannerPreview" src="#" alt="Banner Preview" style="display: none;">
+                            <div class="banner-size-info">
+                                <p>Recommended size: 800 x 200 pixels</p>
+                                <p id="currentBannerSize"></p>
+                            </div>
+                        </div>
+                        <div class="banner-position-select">
+                            <label>Select Banner Position:</label>
+                            <select id="bannerPosition">
+                                <option value="1">Banner 1</option>
+                                <option value="2">Banner 2</option>
+                                <option value="3">Banner 3</option>
+                            </select>
+                        </div>
+                        <input type="file" id="bannerInput" accept="image/*" onchange="previewBanner(event)">
+                        <button id="uploadBannerBtn" class="upload-btn" onclick="uploadBanner()" disabled>
+                            Upload Banner
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Existing Banners Grid -->
+                <div class="banners-grid">
+                    <!-- Banners will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Content Management Section -->
+            <div id="contentSection" class="content-section" style="display: none;">
+                <h2>Content Management</h2>
+                <div class="content-editors">
+                    <div class="editor-box">
+                        <h3>Privacy Policy</h3>
+                        <textarea id="privacyEditor"></textarea>
+                        <button onclick="updatePrivacyPolicy()">Update</button>
+                    </div>
+                    <div class="editor-box">
+                        <h3>Terms & Conditions</h3>
+                        <textarea id="termsEditor"></textarea>
+                        <button onclick="updateTerms()">Update</button>
+                    </div>
+                    <div class="editor-box">
+                        <h3>Contact Information</h3>
+                        <textarea id="contactEditor"></textarea>
+                        <button onclick="updateContact()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Market Modal -->
+    <div id="addMarketModal" class="modal">
+        <div class="modal-content">
+            <h3>Add New Market</h3>
+            <div class="input-box">
+                <input type="text" id="marketName" placeholder="Market Name">
+            </div>
+            <div class="input-box">
+                <input type="text" id="guessNumber" placeholder="Guess Number (XXX-XX-XXX)" 
+                       pattern="\d{3}-\d{2}-\d{3}" maxlength="10">
+                <small>Format: 123-45-678</small>
+            </div>
+            <div class="input-box time-input">
+                <label>Open Time</label>
+                <div class="time-selector">
+                    <input type="time" id="openTime">
+                    <select id="openTimePeriod">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-box time-input">
+                <label>Close Time</label>
+                <div class="time-selector">
+                    <input type="time" id="closeTime">
+                    <select id="closeTimePeriod">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button onclick="addNewMarket()">Add Market</button>
+                <button onclick="closeAddMarketModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Guess Number Modal -->
+    <div id="updateGuessModal" class="modal">
+        <div class="modal-content">
+            <h3>Update Market Details</h3>
+            <div class="input-box">
+                <select id="marketSelect">
+                    <option value="">Select Market</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <input type="text" id="newGuessNumber" placeholder="New Guess Number (XXX-XX-XXX)" 
+                       pattern="\d{3}-\d{2}-\d{3}" maxlength="10">
+                <small>Format: 123-45-678</small>
+            </div>
+            <div class="input-box time-input">
+                <label>Open Time</label>
+                <div class="time-selector">
+                    <input type="time" id="newOpenTime">
+                    <select id="newOpenTimePeriod">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-box time-input">
+                <label>Close Time</label>
+                <div class="time-selector">
+                    <input type="time" id="newCloseTime">
+                    <select id="newCloseTimePeriod">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button onclick="updateGuessNumber()">Update Market</button>
+                <button onclick="closeUpdateGuessModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Details Modal -->
+    <div id="marketDetailsModal" class="modal">
+        <div class="modal-content">
+            <h3>Market Details</h3>
+            <div class="table-container">
+                <table id="marketDetailsTable">
+                    <thead>
+                        <tr>
+                            <th>Market Name</th>
+                            <th>Guess Number</th>
+                            <th>Open Time</th>
+                            <th>Close Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Market details will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-buttons">
+                <button onclick="closeMarketDetailsModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <p></p>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="js/sync.js"></script>
+</body>
+</html> 
