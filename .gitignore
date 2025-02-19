@@ -1,4 +1,31 @@
+# Ignore zip files
+*.zip
+*.rar
+*.7z
+*.gz
+*.tar
+*.tgz
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Ignore logs
+*.log
+
+# Ignore temp files
+*.tmp
+*.temp
+*~
+
+# Ignore node modules if any
 node_modules/
+
 css/output.css
 .chrome/
 .vscode/.chrome/ 
