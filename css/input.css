@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer components {
+  .screen {
+    @apply min-h-screen p-5 fixed top-0 left-0 w-full bg-gray-50 overflow-y-auto;
+  }
+
+  .auth-box {
+    @apply max-w-md mx-auto mt-10 p-8 bg-white rounded-lg shadow-md border border-gray-200;
+  }
+
+  .input-box {
+    @apply my-5;
+  }
+
+  input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-md text-base transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200;
+  }
+
+  button {
+    @apply w-full py-3 px-4 bg-blue-600 text-white font-medium rounded-md shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md;
+  }
+
+  .market-card {
+    @apply bg-white p-6 rounded-lg shadow-sm border border-gray-200 transition-all hover:-translate-y-1 hover:shadow-md;
+  }
+
+  .market-name {
+    @apply text-lg font-semibold text-blue-600 mb-3;
+  }
+
+  .guess-number {
+    @apply text-2xl font-bold text-gray-800;
+  }
+
+  .market-time {
+    @apply mt-3 text-sm text-gray-600;
+  }
+} 

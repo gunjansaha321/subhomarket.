@@ -1,0 +1,967 @@
+/* Remove Tailwind imports since we're using output.css */
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+
+/* Global Styles */
+:root {
+  --primary-color: #2563eb;
+  --text-color: #333;
+  --bg-color: #f5f5f5;
+  --border-color: #ddd;
+  --shadow: 0 2px 4px rgba(0,0,0,0.1);
+  --hover-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+/* Screen Management */
+.screen {
+  min-height: 100vh;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-color);
+  overflow-y: auto;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Splash Screen */
+#splashScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), #1e40af);
+  color: white;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+.splash-content h1 {
+  font-size: 24px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Auth Box */
+.auth-box {
+  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.input-box {
+  margin: 20px 0;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-color);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: var(--shadow);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--hover-shadow);
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Home Screen */
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Menu Button Styles */
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 35px;
+  height: 35px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.menu-btn span {
+  width: 18px;
+  height: 2px;
+  background: var(--text-color);
+  transition: all 0.3s;
+}
+
+.dark-mode .menu-btn {
+  background: #222;
+}
+
+.dark-mode .menu-btn span {
+  background: white;
+}
+
+/* Logout Dialog Styles */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.dialog-box h3 {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: var(--text-color);
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.dialog-buttons button {
+  width: 120px;
+  padding: 12px;
+}
+
+.dialog-buttons .yes-btn {
+  background: #dc2626;
+}
+
+.dialog-buttons .no-btn {
+  background: #4b5563;
+}
+
+.dark-mode .dialog-box {
+  background: #222;
+}
+
+.dark-mode .dialog-box h3 {
+  color: white;
+}
+
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-section h1 {
+  font-size: 24px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.date-time-info {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.info-box {
+  background: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  min-width: 140px;
+}
+
+.market-section {
+  margin: 40px 0;
+}
+
+.market-section h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.market-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  width: auto;
+  padding: 8px 16px;
+  background: white;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.tab-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.market-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.market-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s;
+}
+
+.market-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow);
+}
+
+.market-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.guess-number {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.market-time {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Contact Section */
+.contact-section {
+  text-align: center;
+  margin-top: 40px;
+  padding: 25px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.contact-section h3 {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: transform 0.2s;
+}
+
+.contact-btn:active {
+  transform: scale(0.95);
+}
+
+.contact-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-btn {
+  background: #25D366;
+}
+
+.telegram-btn {
+  background: #0088cc;
+}
+
+/* Side Menu */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: white;
+  padding: 20px;
+  transition: 0.3s;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.menu-item {
+  text-align: left;
+  margin: 8px 0;
+  padding: 12px;
+  background: none;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.menu-item:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* Dark Mode */
+.dark-mode {
+  --text-color: #fff;
+  --bg-color: #1a1a1a;
+  --border-color: #333;
+}
+
+.dark-mode .auth-box,
+.dark-mode .side-menu,
+.dark-mode .market-card,
+.dark-mode .info-box,
+.dark-mode .contact-section {
+  background: #222;
+  border-color: #333;
+}
+
+.dark-mode input {
+  background: #333;
+  color: white;
+  border-color: #444;
+}
+
+.dark-mode .menu-item {
+  background: #222;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark-mode .tab-btn {
+  background: #222;
+  color: #fff;
+  border-color: #444;
+}
+
+.dark-mode .tab-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+.dark-mode .market-name {
+  color: #4f8bff;
+}
+
+.dark-mode .guess-number {
+  color: #fff;
+}
+
+.dark-mode .market-time {
+  color: #aaa;
+}
+
+.dark-mode .contact-btn {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme Switch Styles */
+.theme-switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: #333;
+  border-radius: 15px;
+  cursor: pointer;
+  padding: 4px;
+  transition: all 0.3s;
+}
+
+.theme-switch::before {
+  content: '🌞';
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  font-size: 16px;
+}
+
+.theme-switch::after {
+  content: '🌙';
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 16px;
+}
+
+.switch-handle {
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.dark-mode .theme-switch {
+  background: #666;
+}
+
+.dark-mode .switch-handle {
+  transform: translateX(30px);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .auth-box {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .date-time-info {
+    flex-direction: column;
+  }
+
+  .info-box {
+    width: 100%;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+}
+
+/* Add these styles */
+.banner-section {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.banner-slider {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 20px 0;
+    /* Light mode shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+                0 0 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode banner styles */
+.dark-mode .banner-slider {
+    /* White glow effect */
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1),
+                0 0 30px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.banner-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Content Box Styles */
+.content-box {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.content-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Profile Styles */
+.profile-info {
+    margin: 20px 0;
+}
+
+.info-group {
+    margin: 15px 0;
+}
+
+.info-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.update-message {
+    text-align: center;
+    color: #22c55e;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Policy & Terms Content */
+.policy-content,
+.terms-content {
+    line-height: 1.6;
+}
+
+.policy-content p,
+.terms-content p {
+    margin: 15px 0;
+}
+
+/* Dialog Styles */
+.dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.dialog-content h3 {
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dialog-buttons button {
+    width: 100px;
+}
+
+/* Dark Mode Updates */
+.dark-mode .content-box {
+    background: #222;
+    border-color: #333;
+}
+
+.dark-mode .dialog-content {
+    background: #222;
+    color: white;
+}
+
+/* Update username style */
+#userName {
+    color: #FF6B6B;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+/* Update contact buttons */
+.contact-btn.whatsapp {
+    background: #00E676;  /* Brighter WhatsApp green */
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+}
+
+.contact-btn.telegram {
+    background: #2196F3;  /* Brighter Telegram blue */
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Update profile buttons spacing */
+.update-btn {
+    margin-bottom: 20px;  /* Add space between profile buttons */
+}
+
+/* Dark mode updates */
+.dark-mode #userName {
+    color: #FF8A8A;
+    text-shadow: 0 0 10px rgba(255, 138, 138, 0.4);
+}
+
+.dark-mode .contact-btn.whatsapp {
+    background: #00E676;
+}
+
+.dark-mode .contact-btn.telegram {
+    background: #2196F3;
+}
+
+/* Contact Screen Styles */
+.contact-content {
+    padding: 20px 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    text-align: center;
+}
+
+.info-item label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.info-item p {
+    font-size: 18px;
+    color: var(--primary-color);
+}
+
+.email-link {
+    color: #2196F3;
+    font-size: 18px;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.email-link:hover {
+    color: #1976D2;
+}
+
+.email-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.email-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Dark mode updates */
+.dark-mode .info-item label {
+    color: #fff;
+}
+
+.dark-mode .info-item p {
+    color: #4f8bff;
+}
+
+.dark-mode .email-link {
+    color: #64B5F6;
+}
+
+.dark-mode .email-link:hover {
+    color: #90CAF9;
+}
+
+/* Banner Dark Mode Glow */
+.dark-mode .banner-slider {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Theme Switch Container for Login/Register */
+.theme-switch-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.theme-switch-container .theme-switch {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .theme-switch-container .theme-switch {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Update auth box for dark mode */
+.dark-mode .auth-box {
+    background: #222;
+    border-color: #333;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* App Logo Styles */
+.app-logo {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    padding: 15px;
+    border: 2px solid #9333EA;  /* Purple border */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.2);  /* Purple glow */
+}
+
+.app-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Dark mode styles for logo */
+.dark-mode .app-logo {
+    background: #111;
+    border-color: #9333EA;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+}
+
+/* Theme Toggle Button for Login/Register */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-btn {
+    width: 45px;
+    height: 25px;
+    border-radius: 25px;
+    background: #e2e8f0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.theme-btn::before {
+    content: '';
+    width: 21px;
+    height: 21px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.dark-mode .theme-btn {
+    background: #4b5563;
+    justify-content: flex-end;
+}
+
+.dark-mode .theme-btn::before {
+    transform: translateX(20px);
+}
+
+/* Contact Buttons with Icons */
+.contact-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 0.5px;
+}
+
+.contact-btn.whatsapp {
+    background: #25D366;
+    color: white;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.contact-btn.whatsapp::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.contact-btn.telegram {
+    background: #0088cc;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+}
+
+.contact-btn.telegram::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>') no-repeat center;
+    background-size: contain;
+}
+
+.contact-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Update menu item styles */
+.menu-item.exit-btn {
+    margin-top: 10px;
+    background: #dc2626;
+    color: white;
+}
+
+.menu-item.logout-btn {
+    background: #4b5563;
+    color: white;
+} 
